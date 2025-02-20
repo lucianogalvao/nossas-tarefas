@@ -34,6 +34,9 @@ const taskSchema = new mongoose.Schema(
         return this.type === "Recorrente";
       },
     },
+    icon: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
