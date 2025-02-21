@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
     refreshTokens: {
-      type: [String], // Lista de refresh tokens
+      type: [String],
       default: [],
     },
   },
