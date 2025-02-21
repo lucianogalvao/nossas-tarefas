@@ -16,16 +16,21 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+    },
+    tasks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Task",
+      },
+    ],
+    refreshTokens: {
+      type: [String], // Lista de refresh tokens
+      default: [],
+    },
   },
   { timestamps: true }
 );
-
-// Encripta a senha
-
-userSchema.pre("save", async function (next) {
-  if (this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
 
 module.exports = mongoose.model("User", userSchema);

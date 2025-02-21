@@ -1,6 +1,5 @@
 const Task = require("../models/Task");
 
-// Criar tarefa
 exports.createTask = async (req, res) => {
   try {
     const task = new Task(req.body);
@@ -11,17 +10,15 @@ exports.createTask = async (req, res) => {
   }
 };
 
-// Listar todas a tarefas
 exports.getAllTasks = async (req, res) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find().populate("user", "name");
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// Lista uma tarefa por id
 exports.getTaskById = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -32,7 +29,6 @@ exports.getTaskById = async (req, res) => {
   }
 };
 
-// Atualiza tarefa
 exports.updateTask = async (req, res) => {
   try {
     const updatedTask = Task.findByIdAndUpdate(req.params.id, req.body, {
@@ -47,7 +43,6 @@ exports.updateTask = async (req, res) => {
   }
 };
 
-// Deleta tarefa
 exports.deleteTask = async (req, res) => {
   try {
     const deletedTask = await Task.findByIdAndDelete(req.params.id);
