@@ -1,6 +1,24 @@
 const Task = require("../models/Task");
 const { getIo } = require("../config/socket");
 
+const messaging = require('../config/firebaseAdmin');
+
+const sendPushNotification = async (token, message) => {
+  try {
+    const payload = {
+      notification: {
+        title: message.title,
+        body: message.body,
+      },
+    };
+
+    const response = await messaging.sendToDevice(token, payload);
+    console.log('Notificação enviada com sucesso:', response);
+  } catch (error) {
+    console.error('Erro ao enviar notificação:', error);
+  }
+};
+
 exports.createTask = async (req, res) => {
   try {
     const io = getIo();
