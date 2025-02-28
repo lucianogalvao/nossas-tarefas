@@ -8,6 +8,8 @@ const nextConfig = {
     FIREBASE_API_APP_ID: process.env.FIREBASE_API_APP_ID || "",
     FIREBASE_API_VAPID_KEY: process.env.FIREBASE_API_VAPID_KEY || "",
   },
+  
+  reactStrictMode: true,
 };
 
 export default withPWA({
