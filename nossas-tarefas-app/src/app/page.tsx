@@ -1,4 +1,5 @@
 "use client";
+import { LandingClient } from "@/clients";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 
@@ -11,7 +12,7 @@ const SocketTest = () => {
     });
 
     socket.on("connect", () => {
-      console.log(`Cliente conectado ao servidor via Socket.IO ${socket.id}`);
+      alert(`Cliente conectado ao servidor via Socket.IO ${socket.id}`);
     });
 
     socket.on("taskCreated", (task) => {
@@ -25,7 +26,7 @@ const SocketTest = () => {
     };
   }, []);
 
-  return <h1>Teste de Conexão Socket.IO</h1>;
+  return <LandingClient />;
 };
 
 export default SocketTest;
